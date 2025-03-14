@@ -4,6 +4,7 @@ interface InputProps {
   type: string;
   placeholder: string;
   value: string;
+  name: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -11,6 +12,7 @@ const Input: React.FC<InputProps> = ({
   type,
   placeholder,
   value,
+  name,
   onChange,
 }) => {
   return (
@@ -18,6 +20,7 @@ const Input: React.FC<InputProps> = ({
       type={type}
       placeholder={placeholder}
       value={value}
+      name={name}
       onChange={onChange}
       className={`
         w-full max-w-md px-4 py-2 
