@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface InputProps {
   type: string;
@@ -19,7 +19,17 @@ const Input: React.FC<InputProps> = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-      className={`w-full p-3 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-black`}
+      className={`
+        w-full max-w-md px-4 py-2 
+        bg-gray-800 
+        text-white 
+        border 
+        border-gray-600 
+        rounded-lg 
+        focus:ring-2 
+        focus:ring-cyan-400 
+        focus:border-cyan-400 
+        transition`}
     />
   );
 };

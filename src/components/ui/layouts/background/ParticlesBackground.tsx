@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { initParticlesEngine, Particles } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-import type { ISourceOptions } from "@tsparticles/engine";
+import React, { useEffect, useState } from 'react';
+import { initParticlesEngine, Particles } from '@tsparticles/react';
+import { loadSlim } from '@tsparticles/slim';
+import type { ISourceOptions } from '@tsparticles/engine';
 
 const ParticlesBackground: React.FC = () => {
   const [init, setInit] = useState(false);
@@ -16,27 +16,27 @@ const ParticlesBackground: React.FC = () => {
 
   const options: ISourceOptions = {
     background: {
-      color: { value: "#1a1a2e" },
+      color: { value: '#1a1a2e' },
     },
     particles: {
-      color: { value: "#00bcd4" },
+      color: { value: '#00bcd4' },
       links: {
         enable: true,
-        color: "#00bcd4",
-        opacity: 0.4,
-        distance: 150,
-        width: 1, // Adicione esta linha
+        color: '#00bcd4',
+        opacity: 0.7,
+        distance: 170,
+        width: 2, // Adicione esta linha
       },
       move: {
         enable: true,
-        speed: 0.4,
+        speed: 0.7,
         outModes: {
-          default: "bounce",
-          bottom: "bounce", // Adicione para todos os modos
+          default: 'bounce',
+          bottom: 'bounce', // Adicione para todos os modos
         },
       },
       number: {
-        value: 150,
+        value: 300,
         density: {
           enable: true,
         },
@@ -64,9 +64,9 @@ const ParticlesBackground: React.FC = () => {
 
   return init ? (
     <Particles
-      id="tsparticles"
+      id='tsparticles'
       options={options}
-      className="fixed inset-0 -z-10"
+      className='fixed inset-0 -z-10'
     />
   ) : null;
 };

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
+import React, { useState } from 'react';
+import Input from '../Input/Input';
+import Button from '../Button/Button';
 
 const Form: React.FC = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
   console.log(inputValue, passwordValue);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,22 +34,22 @@ const Form: React.FC = () => {
         z-10
         `}
     >
-      <h2 className="text-white text-2xl font-semibold text-center mb-2">
-        Login
+      <h2 className='text-white text-2xl font-semibold font-serif text-center mb-2'>
+        Black Horse
       </h2>
       <Input
-        type="text"
-        placeholder="Login"
+        type='text'
+        placeholder='Username'
         value={inputValue}
         onChange={handleInputChange}
       />
       <Input
-        type="password"
-        placeholder="Password"
+        type='password'
+        placeholder='Password'
         value={passwordValue}
         onChange={handlePasswordChange}
       />
-      <Button variant="primary">Sign In</Button>
+      <Button variant='primary'>Login</Button>
     </form>
   );
 };
