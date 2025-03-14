@@ -47,7 +47,7 @@ const FormLogin: React.FC = () => {
       onSubmit={handleLogin}
     >
       <h2 className='text-white text-2xl font-semibold font-serif text-center mb-2'>
-        Black Horse
+        Black Forge
       </h2>
       <Input
         type='text'

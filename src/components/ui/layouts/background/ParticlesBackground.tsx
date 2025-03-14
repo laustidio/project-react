@@ -3,7 +3,13 @@ import { initParticlesEngine, Particles } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import type { ISourceOptions } from '@tsparticles/engine';
 
-const ParticlesBackground: React.FC = () => {
+interface ParticlesBackgroundProps {
+  moveSpeed?: number;
+}
+
+const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({
+  moveSpeed = 0.7,
+}) => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -25,14 +31,14 @@ const ParticlesBackground: React.FC = () => {
         color: '#00bcd4',
         opacity: 0.7,
         distance: 170,
-        width: 2, // Adicione esta linha
+        width: 2,
       },
       move: {
         enable: true,
-        speed: 0.7,
+        speed: moveSpeed,
         outModes: {
           default: 'bounce',
-          bottom: 'bounce', // Adicione para todos os modos
+          bottom: 'bounce',
         },
       },
       number: {
@@ -44,7 +50,7 @@ const ParticlesBackground: React.FC = () => {
       opacity: {
         value: 0.5,
         animation: {
-          enable: true, // Adicione animação de opacidade
+          enable: true, // Animations of opacity
           speed: 1,
         },
       },
@@ -54,7 +60,7 @@ const ParticlesBackground: React.FC = () => {
           max: 4,
         },
         animation: {
-          enable: true, // Anima o tamanho
+          enable: true, // Animation of the size
           speed: 2,
         },
       },
