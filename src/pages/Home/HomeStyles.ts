@@ -1,19 +1,17 @@
 export const homeStyles = {
-  home: `max-h-screen 
-        w-screen 
-        p-8 
-        pb-20
-        grid 
+  home: `
+        grid
         grid-col-1 //Only one column in mobiles
-        md:grid-cols-2 //In medium screens start opening with 2 columns 
-        auto-rows-min //Height based on the content
-        gap-5 //Space between containers
-        justify-center
-        overflow-auto`,
+        sm:grid-cols-2
+        md:grid-cols-2 //In medium screens start opening with 2 columns
+        gap-3 //Space between containers
+        p-4
+        overflow-auto
+        `,
 
-  conteiner: `w-full 
-        max-w-2xl 
-        h-[400px]
+  conteiner:
+    ` w-full
+        p-4
         flex 
         flex-col
         border 

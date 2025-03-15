@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import FormLogin from '../../components/ui/FormLogin/FormLogin';
-import ParticlesBackground from '../../components/ui/layouts/background/ParticlesBackground';
+import FormLogin from '../../components/features/FormLogin/FormLogin';
+import ParticlesBackground from '../../components/features/ParticlesBackground/ParticlesBackground';
 
 const Login = () => {
   const navigate = useNavigate();
