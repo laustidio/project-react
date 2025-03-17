@@ -9,8 +9,7 @@ export const homeStyles = {
         overflow-auto
         `,
 
-  conteiner:
-    ` w-full
+  conteiner: ` w-full
         p-4
         flex 
         flex-col

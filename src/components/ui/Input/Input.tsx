@@ -1,8 +1,8 @@
 import React from 'react';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> { }
-
-const Input: React.FC<InputProps> = (props) => {
+const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = (
+  props
+) => {
   return (
     <input
       {...props}
@@ -17,8 +17,7 @@ const Input: React.FC<InputProps> = (props) => {
         focus:ring-cyan-400 
         focus:border-cyan-400 
         transition
-        ${props.className || ''}
-        `}
+        ${props.className || ''}`}
     />
   );
 };

@@ -17,7 +17,7 @@ const Login = () => {
     <div
       className={`w-screen h-screen flex items-center justify-center relative`}
     >
-      <ParticlesBackground moveSpeed={0.7}/>
+      <ParticlesBackground moveSpeed={0.7} />
       <FormLogin />
     </div>
   );

@@ -66,7 +66,7 @@ const FormLogin: React.FC = () => {
       <Button type='submit' variant='primary'>
         Login
       </Button>
-      <Link to="/signup">Signup</Link>
+      <Link to='/signup'>Signup</Link>
     </form>
   );
 };
