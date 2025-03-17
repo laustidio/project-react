@@ -1,14 +1,17 @@
 import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Login from "../pages/Login/Login";
-import MainLayout from "../components/layouts/MainLayout/MainLayout";
-import HomePage from "../pages/Home/Home";
+import Login from "../pages/login/Login";
+import MainLayout from "../components/layouts/main-layout/MainLayout";
+import HomePage from "../pages/home/Home";
 import PrivateRoute from "./PrivateRoute";
-import Profile from "../pages/Profile/Profile";
-import Settings from "../pages/Settings/Settings";
+import Profile from "../pages/profile/Profile";
+import Settings from "../pages/settings/Settings";
+import ParticlesBackground from "../components/features/particles-background/ParticlesBackground";
 
 const AppRoutes = () => {
     return (
         <Router>
+            <ParticlesBackground moveSpeed={0.1} />
+            
             <Routes>
                 {/* Login page out of principal layout */}
                 <Route path="/login" element={<Login />} />

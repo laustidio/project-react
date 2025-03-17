@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Input from '../../ui/Input/Input';
-import Button from '../../ui/Button/Button';
+import Input from '../../../ui/input/Input';
+import Button from '../../../ui/button/Button';
 
 const FormLogin: React.FC = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });

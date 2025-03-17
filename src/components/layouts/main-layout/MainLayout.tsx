@@ -1,15 +1,21 @@
-import React, { useState } from "react"
-import SideMenu from "../../navigation/SideMenu/SideMenu"
-import TopBar from "../../navigation/TopBar/TopBar"
-import { Outlet } from "react-router-dom"
+import { useState } from "react";
 import Container from "../Container"
+import TopBar from "../../navigation/top-bar/TopBar";
+import { Outlet, useNavigate } from "react-router-dom";
+import SideMenu from "../../navigation/side-menu/SideMenu";
 
 const MainLayout: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        navigate('/login');
+    };
 
     return (
         <div className="flex h-screen w-screen overflow-hidden">
-            <SideMenu isOpen={isMenuOpen} toggleMenu={() => setIsMenuOpen(!isMenuOpen)} />
+            <SideMenu isOpen={isMenuOpen} toggleMenu={() => setIsMenuOpen(!isMenuOpen)} toggleLogout={handleLogout} />
 
             <div className="flex-1 flex flex-col h-screen">
                 <TopBar toggleMenu={() => setIsMenuOpen(!isMenuOpen)} />
