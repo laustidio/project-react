@@ -1,22 +1,48 @@
-import { useNavigate } from 'react-router-dom';
+import { homeStyles } from './HomeStyles';
 
 const HomePage = () => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    navigate('/login');
-  };
-
   return (
-    <div className='flex flex-col items-center justify-center h-screen bg-black text-white'>
-      <h1 className='text-3xl font-bold'>Bem-vindo à Home!</h1>
-      <button
-        onClick={handleLogout}
-        className='mt-5 px-6 py-3 text-lg font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-all'
-      >
-        Logout
-      </button>
+    <div className={homeStyles.home}>
+      <div className={homeStyles.conteiner}>
+        <div className={homeStyles.title}>
+          <h3>Welcome Home!</h3>
+        </div>
+        <div className={homeStyles.containerBody}>
+          <p className='text-lg'>Você está logado com sucesso1! 🎉</p>
+        </div>
+      </div>
+      <div className={homeStyles.conteiner}>
+        <div className={homeStyles.title}>
+          <h3>Welcome Home!</h3>
+        </div>
+        <div className={homeStyles.containerBody}>
+          <p className='text-lg'>Você está logado com sucesso2! 🎉</p>
+        </div>
+      </div>
+      <div className={homeStyles.conteiner}>
+        <div className={homeStyles.title}>
+          <h3>Welcome Home!</h3>
+        </div>
+        <div className={homeStyles.containerBody}>
+          <p className='text-lg'>Você está logado com sucesso2! 🎉</p>
+        </div>
+      </div>
+      <div className={homeStyles.conteiner}>
+        <div className={homeStyles.title}>
+          <h3>Welcome Home!</h3>
+        </div>
+        <div className={homeStyles.containerBody}>
+          <p className='text-lg'>Você está logado com sucesso2! 🎉</p>
+        </div>
+      </div>
+      <div className={homeStyles.conteiner}>
+        <div className={homeStyles.title}>
+          <h3>Welcome Home!</h3>
+        </div>
+        <div className={homeStyles.containerBody}>
+          <p className='text-lg'>Você está logado com sucesso2! 🎉</p>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Input from '../Input/Input';
-import Button from '../Button/Button';
-import { useNavigate } from 'react-router-dom';
+import Input from '../../../ui/input/Input';
+import Button from '../../../ui/button/Button';
+import { Link, useNavigate } from 'react-router-dom';
 
 const FormLogin: React.FC = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -47,7 +47,7 @@ const FormLogin: React.FC = () => {
       onSubmit={handleLogin}
     >
       <h2 className='text-white text-2xl font-semibold font-serif text-center mb-2'>
-        Black Horse
+        Black Forge
       </h2>
       <Input
         type='text'
@@ -66,6 +66,7 @@ const FormLogin: React.FC = () => {
       <Button type='submit' variant='primary'>
         Login
       </Button>
+      <Link to='/signup'>Signup</Link>
     </form>
   );
 };

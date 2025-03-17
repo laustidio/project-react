@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import FormLogin from '../../components/ui/FormLogin/FormLogin';
-import ParticlesBackground from '../../components/ui/layouts/background/ParticlesBackground';
+import FormLogin from '../../components/features/forms/form-login/FormLogin';
+import ParticlesBackground from '../../components/features/particles-background/ParticlesBackground';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Login = () => {
     <div
       className={`w-screen h-screen flex items-center justify-center relative`}
     >
-      <ParticlesBackground />
+      <ParticlesBackground moveSpeed={0.7} />
       <FormLogin />
     </div>
   );
