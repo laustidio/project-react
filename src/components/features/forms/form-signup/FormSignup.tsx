@@ -89,5 +89,4 @@ const FormSignup: React.FC = () => {
         </FormProvider>
     )
 }
-
-export default FormSignup
+export default FormSignup;
