@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Input from '../../../ui/input/Input';
 import Button from '../../../ui/button/Button';
+import { Link, useNavigate } from 'react-router-dom';
 
 const FormLogin: React.FC = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -66,6 +66,7 @@ const FormLogin: React.FC = () => {
       <Button type='submit' variant='primary'>
         Login
       </Button>
+      <Link to="/signup">Signup</Link>
     </form>
   );
 };
