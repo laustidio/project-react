@@ -1,12 +1,32 @@
 import React from 'react';
+import { useFormContext } from 'react-hook-form';
 
-const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = (
-  props
-) => {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  name: string
+  label?: string
+}
+
+const Input: React.FC<InputProps> = ({ name, label, ...props }) => {
+  const formContext = useFormContext();
+
+  if (!formContext) {
+    throw new Error(
+      `O componente <Input name="${name}"/> deve ser usado dentro de um <FormProvider>`
+    )
+  }
+  
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
   return (
-    <input
-      {...props}
-      className={`
+    <div className="relative w-full mb-2">
+      {label && <label className="block text-white mb-1">{label}</label>}
+      <input
+        {...register(name)}
+        {...props}
+        className={`
         w-full max-w-md px-4 py-2 
         bg-gray-800 
         text-white 
@@ -17,8 +37,16 @@ const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = (
         focus:ring-cyan-400 
         focus:border-cyan-400 
         transition
-        ${props.className || ''}`}
-    />
+        ${props.className || ''}
+        ${errors[name] ? "border-red-500" : "border-gray-500"}
+      `}
+      />
+      {errors[name] && (
+        <p className="absolute top-full left-0 text-red-500 text-sm">
+          {errors[name]?.message as string}
+        </p>
+      )}
+    </div>
   );
 };
 
