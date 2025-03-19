@@ -1,49 +1,65 @@
+import clsx from 'clsx';
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, UseFormRegisterReturn, FieldError } from 'react-hook-form';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string
   label?: string
+
+  //Props to use without FormProvider
+  register?: UseFormRegisterReturn<string>;
+  error?: string | FieldError
 }
 
-const Input: React.FC<InputProps> = ({ name, label, ...props }) => {
+const Input: React.FC<InputProps> = (
+  {
+    name,
+    label,
+    className,
+    register,
+    error: externalError,
+    ...props
+  }) => {
   const formContext = useFormContext();
 
-  if (!formContext) {
-    throw new Error(
-      `O componente <Input name="${name}"/> deve ser usado dentro de um <FormProvider>`
-    )
-  }
-  
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+  //Hybrid mode: Automatically detects context
+  const isFormContext = !!formContext;
+  const { register: formRegister, formState } = formContext || {};
+  const internalError = externalError || (formState?.errors[name] as FieldError);
 
   return (
     <div className="relative w-full mb-2">
-      {label && <label className="block text-white mb-1">{label}</label>}
+      {label && (
+        <label className="block text-white mb-1" htmlFor={name}>
+          {label}
+        </label>
+      )}
+
       <input
-        {...register(name)}
-        {...props}
-        className={`
-        w-full max-w-md px-4 py-2 
-        bg-gray-800 
-        text-white 
-        border 
-        border-gray-600 
-        rounded-lg 
-        focus:ring-2 
-        focus:ring-cyan-400 
-        focus:border-cyan-400 
-        transition
-        ${props.className || ''}
-        ${errors[name] ? "border-red-500" : "border-gray-500"}
-      `}
+        id={name}
+        {...(
+          isFormContext ? formRegister(name) : {
+            ...props, //Automatic RHF (React Hook Form) registration
+            ...register //Manual usage
+          }
+        )}
+        className={
+          clsx(
+            "w-full max-w-md px-4 py-2 bg-gray-800 text-white",
+            "border rounded-lg focus:ring-2 focus:ring-cyan-400",
+            "focus:border-cyan-400 transition",
+            className,
+            internalError ? "border-red-500" : "border-gray-600"
+          )}
+        aria-invalid={!!internalError}
       />
-      {errors[name] && (
-        <p className="absolute top-full left-0 text-red-500 text-sm">
-          {errors[name]?.message as string}
+
+      {internalError && (
+        <p className="absolute top-full left-0 text-red-500 text-sm mt-1">
+          {typeof internalError === "string"
+            ? internalError
+            : internalError.message
+          }
         </p>
       )}
     </div>
