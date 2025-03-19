@@ -1,19 +1,23 @@
 import React from 'react';
 import { Check } from 'lucide-react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, UseFormRegisterReturn } from 'react-hook-form';
 
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: React.ReactNode;
   name: string;
-  register?: any;
+  register?: UseFormRegisterReturn<string>;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ name, label, register, ...props }) => {
+const Checkbox: React.FC<CheckboxProps> = ({
+  name,
+  label,
+  register,
+  ...props
+}) => {
   const formContext = useFormContext();
 
   return (
     <label className='flex items-center space-x-2 cursor-pointer'>
-
       {/* Invisible checkbox */}
       <input
         type='checkbox'
@@ -30,8 +34,9 @@ const Checkbox: React.FC<CheckboxProps> = ({ name, label, register, ...props }) 
           flex items-center justify-center
           transition duration-200
            peer-checked:bg-cyan-400 peer-checked:border-cyan-400
-        `}>
-        {props.checked && <Check size={16} color="white" />}
+        `}
+      >
+        {props.checked && <Check size={16} color='white' />}
       </div>
 
       <span className='text-white text-sm'>{label}</span>

@@ -7,12 +7,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useFormValidation } from '../../../../hooks/useFormValidation';
 
 interface LoginFormData {
-  username: string
-  password: string
+  username: string;
+  password: string;
 }
 
 const schema = Yup.object().shape({
-  username: Yup.string().min(3, "Minimum 3 characters.").required('Username is required.'),
+  username: Yup.string()
+    .min(3, 'Minimum 3 characters.')
+    .required('Username is required.'),
   password: Yup.string().required('Password is required.'),
 });
 
@@ -23,9 +25,9 @@ const FormLogin: React.FC = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<LoginFormData> = (data) => {
-    localStorage.setItem("user", JSON.stringify(data))
-    navigate("/home")
-  }
+    localStorage.setItem('user', JSON.stringify(data));
+    navigate('/home');
+  };
 
   return (
     <FormProvider {...methods}>
@@ -55,12 +57,12 @@ const FormLogin: React.FC = () => {
         <Input
           type='text'
           placeholder='Username'
-          {...register("username", { required: true })}
+          {...register('username', { required: true })}
         />
         <Input
           type='password'
           placeholder='Password'
-          {...register("password", { required: true })}
+          {...register('password', { required: true })}
         />
         <Button type='submit' variant='primary'>
           Login

@@ -64,13 +64,14 @@ export default [
       prettier: pluginPrettier,
     },
     rules: {
-      ...configPrettier.rules,
-      "prettier/prettier": "error",
-      "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off",
-      "@typescript-eslint/no-unused-vars": ["warn"],
+      "@typescript-eslint/no-unused-vars": "warn",
       "no-console": "warn",
-      indent: ["error", 2],
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ]
     },
   },
 ];
