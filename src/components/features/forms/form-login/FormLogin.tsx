@@ -2,29 +2,22 @@ import React from 'react';
 import * as Yup from 'yup';
 import Input from '../../../ui/input/Input';
 import Button from '../../../ui/button/Button';
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFormValidation } from '../../../../hooks/useFormValidation';
-
-interface LoginFormData {
-  username: string;
-  password: string;
-}
+import clsx from 'clsx';
 
 const schema = Yup.object().shape({
-  username: Yup.string()
-    .min(3, 'Minimum 3 characters.')
-    .required('Username is required.'),
+  username: Yup.string().required('Username is required.'),
   password: Yup.string().required('Password is required.'),
 });
 
 const FormLogin: React.FC = () => {
-  const { handleSubmit, register } = useForm<LoginFormData>();
   const methods = useFormValidation<typeof schema>(schema);
 
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<LoginFormData> = (data) => {
+  const onSubmit: SubmitHandler<Yup.InferType<typeof schema>> = (data) => {
     localStorage.setItem('user', JSON.stringify(data));
     navigate('/home');
   };
@@ -32,38 +25,24 @@ const FormLogin: React.FC = () => {
   return (
     <FormProvider {...methods}>
       <form
-        className={`
-        flex flex-col 
-        items-center 
-        justify-center 
-        w-[400px] 
-        h-[300px] 
-        p-5 
-        gap-4 
-        border 
-        border-white/20 
-        bg-white/10 
-        backdrop-blur-lg 
-        shadow-xl 
-        rounded-xl
-        relative 
-        z-10
-        `}
-        onSubmit={handleSubmit(onSubmit)}
+        className={clsx(
+          'flex flex-col items-center justify-center',
+          'w-[400px] h-[300px] p-5 z-10 gap-4',
+          'border border-white/20 bg-white/10 backdrop-blur-lg',
+          'shadow-xl rounded-xl relative'
+        )}
+        onSubmit={methods.handleSubmit(onSubmit)}
       >
-        <h2 className='text-white text-2xl font-semibold font-serif text-center mb-2'>
+        <h2
+          className={clsx(
+            'text-white text-2xl font-semibold font-serif',
+            'text-center mb-2'
+          )}
+        >
           Black Forge
         </h2>
-        <Input
-          type='text'
-          placeholder='Username'
-          {...register('username', { required: true })}
-        />
-        <Input
-          type='password'
-          placeholder='Password'
-          {...register('password', { required: true })}
-        />
+        <Input type='text' placeholder='Username' name='username' />
+        <Input type='password' placeholder='Password' name='password' />
         <Button type='submit' variant='primary'>
           Login
         </Button>
