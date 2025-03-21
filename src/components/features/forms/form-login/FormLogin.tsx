@@ -1,33 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
+import * as Yup from 'yup';
 import Input from '../../../ui/input/Input';
 import Button from '../../../ui/button/Button';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { useFormValidation } from '../../../../hooks/useFormValidation';
+
+interface LoginFormData {
+  username: string;
+  password: string;
+}
+
+const schema = Yup.object().shape({
+  username: Yup.string()
+    .min(3, 'Minimum 3 characters.')
+    .required('Username is required.'),
+  password: Yup.string().required('Password is required.'),
+});
 
 const FormLogin: React.FC = () => {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const { handleSubmit, register } = useForm<LoginFormData>();
+  const methods = useFormValidation<typeof schema>(schema);
+
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (formData.username.trim() && formData.password.trim()) {
-      localStorage.setItem('user', JSON.stringify(formData)); //Simulate authentication
-      navigate('/home');
-    } else {
-      alert('All the fields are riquired be completed!');
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value, // Updates state dynamically
-    });
+  const onSubmit: SubmitHandler<LoginFormData> = (data) => {
+    localStorage.setItem('user', JSON.stringify(data));
+    navigate('/home');
   };
 
   return (
-    <form
-      className={`
+    <FormProvider {...methods}>
+      <form
+        className={`
         flex flex-col 
         items-center 
         justify-center 
@@ -44,30 +49,27 @@ const FormLogin: React.FC = () => {
         relative 
         z-10
         `}
-      onSubmit={handleLogin}
-    >
-      <h2 className='text-white text-2xl font-semibold font-serif text-center mb-2'>
-        Black Forge
-      </h2>
-      <Input
-        type='text'
-        name='username'
-        placeholder='Username'
-        value={formData.username}
-        onChange={handleChange}
-      />
-      <Input
-        type='password'
-        name='password'
-        placeholder='Password'
-        value={formData.password}
-        onChange={handleChange}
-      />
-      <Button type='submit' variant='primary'>
-        Login
-      </Button>
-      <Link to='/signup'>Signup</Link>
-    </form>
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h2 className='text-white text-2xl font-semibold font-serif text-center mb-2'>
+          Black Forge
+        </h2>
+        <Input
+          type='text'
+          placeholder='Username'
+          {...register('username', { required: true })}
+        />
+        <Input
+          type='password'
+          placeholder='Password'
+          {...register('password', { required: true })}
+        />
+        <Button type='submit' variant='primary'>
+          Login
+        </Button>
+        <Link to='/signup'>Signup</Link>
+      </form>
+    </FormProvider>
   );
 };
 

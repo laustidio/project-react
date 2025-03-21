@@ -6,9 +6,12 @@ import Checkbox from '../../../ui/checkbox/Checkbox';
 import { FormSignupStyles } from './FormSignupStyles';
 import { FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFormValidation } from '../../../../hooks/useFormValidation';
+import { useNavigate } from 'react-router-dom';
 
 const schema = Yup.object().shape({
-  username: Yup.string().min(3).required('Username is required.'),
+  username: Yup.string()
+    .min(3, 'Minimum 3 characters.')
+    .required('Username is required.'),
   password: Yup.string()
     .min(6, 'Minimum 6 characters.')
     .required('Password is required.'),
@@ -23,11 +26,16 @@ const schema = Yup.object().shape({
 
 const FormSignup: React.FC = () => {
   const methods = useFormValidation<typeof schema>(schema);
+
+  const navigate = useNavigate();
   const { reset } = methods;
 
-  const onSubmit: SubmitHandler<Yup.InferType<typeof schema>> = (data) => {
-    console.log('Data', data);
+  const onSubmit: SubmitHandler<Yup.InferType<typeof schema>> = () => {
     reset();
+  };
+
+  const handleCancel = () => {
+    navigate('/login');
   };
 
   return (
@@ -37,63 +45,42 @@ const FormSignup: React.FC = () => {
         className={FormSignupStyles.form}
       >
         <h2 className={FormSignupStyles.h2}>Black Forge</h2>
-        <Input
-          type='text'
-          placeholder='Username'
-          {...methods.register('username')}
-        />
-        {methods.formState.errors.username && (
-          <p className={FormSignupStyles.yupText}>
-            {methods.formState.errors.username.message}
-          </p>
-        )}
 
-        <Input
-          type='password'
-          placeholder='Password'
-          {...methods.register('password')}
-        />
-        {methods.formState.errors.password && (
-          <p className={FormSignupStyles.yupText}>
-            {methods.formState.errors.password.message}
-          </p>
-        )}
-
+        <Input type='text' placeholder='Username' name='username' />
+        <Input type='password' placeholder='Password' name='password' />
         <Input
           type='password'
           placeholder='Confirm password'
-          {...methods.register('confirmPwd')}
+          name='confirmPwd'
         />
-        {methods.formState.errors.confirmPwd && (
-          <p className={FormSignupStyles.yupText}>
-            {methods.formState.errors.confirmPwd.message}
-          </p>
-        )}
-
-        <Input
-          type='email'
-          placeholder='Email'
-          {...methods.register('email')}
-        />
-        {methods.formState.errors.email && (
-          <p className={FormSignupStyles.yupText}>
-            {methods.formState.errors.email.message}
-          </p>
-        )}
+        <Input type='email' placeholder='Email' name='email' />
 
         <Checkbox
-          label='Accept the therms of the use.'
-          {...methods.register('isAcceptTherms')}
+          label={
+            <>
+              I confirm that I have read, consent and agree to Black Forge’s{''}
+              <a href='' className='text-cyan-400 hover:underline'>
+                Terms of Use
+              </a>
+              {''}
+              and{''}
+              <a href='' className='text-cyan-400 hover:underline'>
+                Privacy Policy
+              </a>
+              .
+            </>
+          }
+          name='isAcceptTherms'
         />
-        {methods.formState.errors.isAcceptTherms && (
-          <p className={FormSignupStyles.yupText}>
-            {methods.formState.errors.isAcceptTherms.message}
-          </p>
-        )}
 
-        <Button type='submit' variant='primary'>
-          Signup
-        </Button>
+        <div className='flex w-full justify-between items-center'>
+          <Button onClick={handleCancel} variant='secondary'>
+            Cancel
+          </Button>
+          <Button type='submit' variant='primary'>
+            Signup
+          </Button>
+        </div>
       </form>
     </FormProvider>
   );
