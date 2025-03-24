@@ -1,4 +1,4 @@
-import Container from '../../components/layouts/Container';
+import Container from '../../components/layouts/container/Container';
 
 const Profile = () => {
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { sideMenuStyles } from './SideMenuStyles';
 import Button from '../../ui/button/Button';
+import clsx from 'clsx';
 
 interface SideMenuProps {
   isOpen: boolean;
@@ -10,23 +10,15 @@ interface SideMenuProps {
   toggleLogout: () => void;
 }
 
-const SideMenu: React.FC<SideMenuProps> = ({
-  isOpen,
-  toggleMenu,
-  toggleLogout,
-}) => {
+const SideMenu: React.FC<SideMenuProps> = ({ isOpen, toggleLogout }) => {
   return (
     <aside
-      className={`
-        fixed top-0 left-0 h-full w-64 bg-[#111826fa] transition-transform z-1
-        ${isOpen ? 'translate-x-0' : '-translate-x-64'}
-        `}
+      className={clsx(
+        'fixed top-14 left-0 h-full w-50 opacity-95',
+        'bg-[#111826fa] transition-transform z-1',
+        isOpen ? 'translate-x-0' : '-translate-x-64'
+      )}
     >
-      {/* Button to open/close menu */}
-      <button onClick={toggleMenu} className='text-white p-4'>
-        <Menu />
-      </button>
-
       {/* Menu links */}
       <nav className='mt-10 space-y-4 text-white'>
         <Link to='/home' className={sideMenuStyles.link}>

@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FormProvider, SubmitHandler } from 'react-hook-form';
 import { useFormValidation } from '../../../../hooks/useFormValidation';
 import clsx from 'clsx';
+import { LockKeyhole, SquareUserRound } from 'lucide-react';
 
 const schema = Yup.object().shape({
   username: Yup.string().required('Username is required.'),
@@ -26,8 +27,8 @@ const FormLogin: React.FC = () => {
     <FormProvider {...methods}>
       <form
         className={clsx(
-          'flex flex-col items-center justify-center',
           'w-[400px] h-[300px] p-5 z-10 gap-4',
+          'flex flex-col items-center justify-center',
           'border border-white/20 bg-white/10 backdrop-blur-lg',
           'shadow-xl rounded-xl relative'
         )}
@@ -41,17 +42,34 @@ const FormLogin: React.FC = () => {
         >
           Black Forge
         </h2>
-        <Input type='text' placeholder='Username' name='username' />
-        <Input type='password' placeholder='Password' name='password' />
+        <Input
+          type='text'
+          placeholder='Username'
+          name='username'
+          icon={<SquareUserRound size={18} />}
+        />
+        <Input
+          type='password'
+          placeholder='Password'
+          name='password'
+          isPassword
+          icon={<LockKeyhole size={18} />}
+        />
 
         <Button type='submit' variant='primary' className='w-full'>
           Login
         </Button>
         <div className={clsx('w-full flex justify-between items-center')}>
-          <Link to='/signup' className='text-blue-500'>
+          <Link
+            to='/signup'
+            className={clsx('text-sm text-[#00E0FF] hover:text-[#00C2FF]')}
+          >
             Forgot password?
           </Link>
-          <Link to='/signup' className='text-blue-500'>
+          <Link
+            to='/signup'
+            className={clsx('text-sm text-[#00E0FF] hover:text-[#00C2FF]')}
+          >
             Signup
           </Link>
         </div>

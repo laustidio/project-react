@@ -8,7 +8,7 @@ interface ParticlesBackgroundProps {
 }
 
 const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({
-  moveSpeed = 0.7,
+  moveSpeed = 0.5,
 }) => {
   const [init, setInit] = useState(false);
 

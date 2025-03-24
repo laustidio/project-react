@@ -1,7 +1,7 @@
+import clsx from 'clsx';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormLogin from '../../components/features/forms/form-login/FormLogin';
-import ParticlesBackground from '../../components/features/particles-background/ParticlesBackground';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,9 +15,11 @@ const Login = () => {
 
   return (
     <div
-      className={`w-screen h-screen flex items-center justify-center relative`}
+      className={clsx(
+        'w-screen h-screen',
+        'flex items-center justify-center relative'
+      )}
     >
-      <ParticlesBackground moveSpeed={0.7} />
       <FormLogin />
     </div>
   );

@@ -2,11 +2,12 @@ import React from 'react';
 import * as Yup from 'yup';
 import Input from '../../../ui/input/Input';
 import Button from '../../../ui/button/Button';
+import { useNavigate } from 'react-router-dom';
 import Checkbox from '../../../ui/checkbox/Checkbox';
 import { FormSignupStyles } from './FormSignupStyles';
 import { FormProvider, SubmitHandler } from 'react-hook-form';
+import { LockKeyhole, Mail, SquareUserRound } from 'lucide-react';
 import { useFormValidation } from '../../../../hooks/useFormValidation';
-import { useNavigate } from 'react-router-dom';
 
 const schema = Yup.object().shape({
   username: Yup.string()
@@ -46,14 +47,32 @@ const FormSignup: React.FC = () => {
       >
         <h2 className={FormSignupStyles.h2}>Black Forge</h2>
 
-        <Input type='text' placeholder='Username' name='username' />
-        <Input type='password' placeholder='Password' name='password' />
+        <Input
+          type='text'
+          placeholder='Username'
+          name='username'
+          icon={<SquareUserRound size={18} />}
+        />
+        <Input
+          type='password'
+          placeholder='Password'
+          name='password'
+          isPassword
+          icon={<LockKeyhole size={18} />}
+        />
         <Input
           type='password'
           placeholder='Confirm password'
           name='confirmPwd'
+          isPassword
+          icon={<LockKeyhole size={18} />}
         />
-        <Input type='email' placeholder='Email' name='email' />
+        <Input
+          type='email'
+          placeholder='Email'
+          name='email'
+          icon={<Mail size={18} />}
+        />
 
         <Checkbox
           label={

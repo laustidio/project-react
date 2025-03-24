@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Container from '../Container';
+import Container from '../container/Container';
 import TopBar from '../../navigation/top-bar/TopBar';
 import { Outlet, useNavigate } from 'react-router-dom';
 import SideMenu from '../../navigation/side-menu/SideMenu';
