@@ -43,10 +43,18 @@ const FormLogin: React.FC = () => {
         </h2>
         <Input type='text' placeholder='Username' name='username' />
         <Input type='password' placeholder='Password' name='password' />
-        <Button type='submit' variant='primary'>
+
+        <Button type='submit' variant='primary' className='w-full'>
           Login
         </Button>
-        <Link to='/signup'>Signup</Link>
+        <div className={clsx('w-full flex justify-between items-center')}>
+          <Link to='/signup' className='text-blue-500'>
+            Forgot password?
+          </Link>
+          <Link to='/signup' className='text-blue-500'>
+            Signup
+          </Link>
+        </div>
       </form>
     </FormProvider>
   );

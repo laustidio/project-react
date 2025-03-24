@@ -58,12 +58,11 @@ const FormSignup: React.FC = () => {
         <Checkbox
           label={
             <>
-              I confirm that I have read, consent and agree to Black Forge’s{''}
+              I confirm that I have read, consent and agree to Black Forge’s
               <a href='' className='text-cyan-400 hover:underline'>
                 Terms of Use
-              </a>
-              {''}
-              and{''}
+              </a>{' '}
+              and{' '}
               <a href='' className='text-cyan-400 hover:underline'>
                 Privacy Policy
               </a>

@@ -20,14 +20,14 @@ const Checkbox: React.FC<CheckboxProps> = ({ name, label, ...props }) => {
       {/* Custom box */}
       <div
         className={clsx(
-          'w-5 h-5 flex shrink-0 items-center justify-center border rounded-md',
+          'w-4 h-4 flex shrink-0 items-center justify-center border rounded-md',
           field.value ? 'bg-cyan-400 border-cyan-400' : 'border-gray-400'
         )}
       >
-        {field.value && <Check size={20} color='white' strokeWidth={4} />}
+        {field.value && <Check size={20} color='white' strokeWidth={3} />}
       </div>
 
-      <span className='text-white text-sm'>{label}</span>
+      <span className='text-white text-xs'>{label}</span>
     </label>
   );
 };
