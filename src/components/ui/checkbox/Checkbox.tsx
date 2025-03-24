@@ -13,21 +13,26 @@ const Checkbox: React.FC<CheckboxProps> = ({ name, label, ...props }) => {
   const { field } = useController({ name, control });
 
   return (
-    <label className='flex items-center space-x-2 cursor-pointer'>
+    <label className={clsx('flex items-center space-x-2 cursor-pointer')}>
       {/* Invisible input */}
       <input type='checkbox' {...props} {...field} className='sr-only' />
 
       {/* Custom box */}
       <div
         className={clsx(
-          'w-4 h-4 flex shrink-0 items-center justify-center border rounded-md',
-          field.value ? 'bg-cyan-400 border-cyan-400' : 'border-gray-400'
+          'w-4 h-4 shrink-0',
+          'border rounded-md',
+          'flex items-center justify-center',
+          'transition-colors duration-200',
+          field.value
+            ? 'bg-cyan-500 border-cyan-500 bg-gradient-to-b from-cyan-400 to-blue-600'
+            : 'border-gray-400'
         )}
       >
-        {field.value && <Check size={20} color='white' strokeWidth={3} />}
+        {field.value && <Check color='white' strokeWidth={4} />}
       </div>
 
-      <span className='text-white text-xs'>{label}</span>
+      <span className={clsx('text-white text-xs/snug')}>{label}</span>
     </label>
   );
 };
