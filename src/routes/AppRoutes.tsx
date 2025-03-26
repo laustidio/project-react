@@ -12,6 +12,7 @@ import {
 import ParticlesBackground from '../components/features/particles-background/ParticlesBackground';
 import Profile from '../pages/Profile/Profile';
 import Settings from '../pages/Settings/Settings';
+import ForgetPwd from '../pages/forget-pwd/ForgetPwd';
 
 const AppRoutes = () => {
   return (
@@ -22,6 +23,8 @@ const AppRoutes = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/' element={<Navigate to={'/login'} />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/forget-password' element={<ForgetPwd />} />
+
         <Route element={<PrivateRoute />}>
           {/* Protect routes before login */}
           <Route element={<MainLayout />}>
