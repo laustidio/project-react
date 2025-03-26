@@ -1,12 +1,15 @@
 import React from 'react';
 import * as Yup from 'yup';
 import Input from '../../../ui/input/Input';
-import Button from '../../../ui/button/Button';
-import Checkbox from '../../../ui/checkbox/Checkbox';
-import { FormSignupStyles } from './FormSignupStyles';
-import { FormProvider, SubmitHandler } from 'react-hook-form';
-import { useFormValidation } from '../../../../hooks/useFormValidation';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../../ui/button/Button';
+import CardForm from '../../../card-form/CardForm';
+import Checkbox from '../../../ui/checkbox/Checkbox';
+import { Heading } from '../../../ui/heading/Heading';
+import FormContainer from '../../../form/FormContainer';
+import { FormProvider, SubmitHandler } from 'react-hook-form';
+import { LockKeyhole, Mail, SquareUserRound } from 'lucide-react';
+import { useFormValidation } from '../../../../hooks/useFormValidation';
 
 const schema = Yup.object().shape({
   username: Yup.string()
@@ -40,48 +43,64 @@ const FormSignup: React.FC = () => {
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit(onSubmit)}
-        className={FormSignupStyles.form}
-      >
-        <h2 className={FormSignupStyles.h2}>Black Forge</h2>
+      <CardForm>
+        <FormContainer onSubmit={methods.handleSubmit(onSubmit)}>
+          <Heading variant='h2'>New account</Heading>
 
-        <Input type='text' placeholder='Username' name='username' />
-        <Input type='password' placeholder='Password' name='password' />
-        <Input
-          type='password'
-          placeholder='Confirm password'
-          name='confirmPwd'
-        />
-        <Input type='email' placeholder='Email' name='email' />
+          <Input
+            type='text'
+            placeholder='Username'
+            name='username'
+            icon={<SquareUserRound size={18} />}
+          />
+          <Input
+            type='password'
+            placeholder='Password'
+            name='password'
+            isPassword
+            icon={<LockKeyhole size={18} />}
+          />
+          <Input
+            type='password'
+            placeholder='Confirm password'
+            name='confirmPwd'
+            isPassword
+            icon={<LockKeyhole size={18} />}
+          />
+          <Input
+            type='email'
+            placeholder='username@example.com'
+            name='email'
+            icon={<Mail size={18} />}
+          />
 
-        <Checkbox
-          label={
-            <>
-              I confirm that I have read, consent and agree to Black Forge’s{''}
-              <a href='' className='text-cyan-400 hover:underline'>
-                Terms of Use
-              </a>
-              {''}
-              and{''}
-              <a href='' className='text-cyan-400 hover:underline'>
-                Privacy Policy
-              </a>
-              .
-            </>
-          }
-          name='isAcceptTherms'
-        />
+          <Checkbox
+            label={
+              <>
+                I confirm that I have read, consent and agree to Black Forge’s{' '}
+                <a href='' className='text-cyan-400 hover:underline'>
+                  Terms of Use
+                </a>{' '}
+                and{' '}
+                <a href='' className='text-cyan-400 hover:underline'>
+                  Privacy Policy
+                </a>
+                .
+              </>
+            }
+            name='isAcceptTherms'
+          />
 
-        <div className='flex w-full justify-between items-center'>
-          <Button onClick={handleCancel} variant='secondary'>
-            Cancel
-          </Button>
-          <Button type='submit' variant='primary'>
-            Signup
-          </Button>
-        </div>
-      </form>
+          <div className='flex w-full justify-between items-center'>
+            <Button onClick={handleCancel} variant='secondary'>
+              Cancel
+            </Button>
+            <Button type='submit' variant='primary'>
+              Signup
+            </Button>
+          </div>
+        </FormContainer>
+      </CardForm>
     </FormProvider>
   );
 };
