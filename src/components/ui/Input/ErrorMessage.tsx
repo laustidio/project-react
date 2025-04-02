@@ -9,7 +9,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({ error }) => {
   if (!error) return null;
 
   return (
-    <p className='absolute top-full left-0 text-red-500 text-xs'>
+    <p className='absolute top-full pt-[1px] left-0 text-red-500 text-xs'>
       {error.message}
     </p>
   );

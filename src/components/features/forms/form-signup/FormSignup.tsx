@@ -38,6 +38,7 @@ const FormSignup: React.FC = () => {
   };
 
   const handleCancel = () => {
+    methods.reset();
     navigate('/login');
   };
 

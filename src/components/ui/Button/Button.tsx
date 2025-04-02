@@ -3,11 +3,13 @@ import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline';
+  hoverStyle?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   className,
+  hoverStyle = 'hover:scale-112',
   children,
   ...props
 }) => {
@@ -29,14 +31,15 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       className={clsx(
-        'h-8 min-w-[100px]',
+        'h-7 min-w-[80px]',
         'relative',
         'text-white font-medium tracking-wide uppercase',
         'border border-cyan-400 rounded-lg shadow-md',
         'transition-all duration-300 ease-in-out',
-        'hover:scale-102 active:scale-95',
+        'active:scale-95',
         'cursor-pointer',
         variantStyles[variant],
+        hoverStyle,
         className
       )}
       {...props}

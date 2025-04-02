@@ -45,7 +45,12 @@ const FormLogin: React.FC = () => {
             icon={<LockKeyhole size={18} />}
           />
 
-          <Button type='submit' variant='primary' className='w-full'>
+          <Button
+            type='submit'
+            variant='primary'
+            className='w-full -mb-1'
+            hoverStyle='hover:scale-104'
+          >
             Login
           </Button>
           <div className={clsx('w-full flex justify-between items-center')}>
